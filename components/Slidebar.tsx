@@ -60,7 +60,7 @@ const Slidebar = () => {
                 <div className="relative w-8 h-8 mr-4">
                     <Image 
                     
-                    src="/logo.png"
+                    src="/logo.webp"
                     alt="logo"
                     fill
                     
@@ -68,7 +68,7 @@ const Slidebar = () => {
 
                     
                 </div>
-                <h1 className="text-2xl font-bold">Genius</h1>
+                <h1 className="text-2xl font-bold">Releq.ai</h1>
             </Link>
             <div className='spece-y-1'>
                 {routes.map((route)=>(
