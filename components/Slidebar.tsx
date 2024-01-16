@@ -60,7 +60,7 @@ const Slidebar = () => {
                 <div className="relative w-8 h-8 mr-4">
                     <Image 
                     
-                    src="/logo.webp"
+                    src="/logo.png"
                     alt="logo"
                     fill
                     
