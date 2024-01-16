@@ -1,19 +1,18 @@
-import React from 'react'
-import Link from 'next/link'
-import { SignInButton, SignUpButton} from '@clerk/nextjs'
+import { LandingContent } from '@/components/landingcontent'
+import { LandingHero } from '@/components/landinghero'
+import { LandingNavbar } from '@/components/landingnavbar'
 
-const Landingpage = () => {
+import React from 'react'
+
+const page = () => {
   return (
     <div>
-      <Link href="/sign-in"  >
-        <SignInButton>Sign in</SignInButton>
-      </Link>
-      <Link href="/sign-up"  >
-        <SignUpButton>Sign up</SignUpButton>
-      </Link>
+      <LandingNavbar/>
+      <LandingHero/>
+      <LandingContent/>
       
     </div>
   )
 }
 
-export default Landingpage
+export default page
