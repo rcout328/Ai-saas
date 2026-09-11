@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# AI SaaS
 
-## Getting Started
+AI SaaS is an authenticated Next.js dashboard that exposes conversation, code, image, music, and video generation workflows through OpenAI- and Replicate-backed API routes.
 
-First, run the development server:
+## Core features
+
+- Clerk-protected dashboard with sign-in and sign-up routes.
+- Conversational and code-generation interfaces using chat messages.
+- Prompt-based image generation with selectable amount and resolution.
+- Prompt-based music and video generation through Replicate.
+- Responsive landing page, dashboard navigation, loading states, and Markdown rendering.
+
+## Technology stack
+
+- Next.js 14, React 18, and TypeScript
+- Clerk authentication middleware
+- OpenAI Node SDK 3.x and Replicate
+- Tailwind CSS, Radix UI primitives, and Lucide icons
+- React Hook Form, Zod, Axios, and React Markdown
+
+## Prerequisites
+
+- Node.js and npm
+- Clerk application configuration
+- OpenAI and Replicate credentials for the corresponding generators
+
+## Local setup
 
 ```bash
+git clone https://github.com/varunisrani/Ai-saas.git
+cd Ai-saas
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Next.js serves the development application at `http://localhost:3000` by default.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Production commands:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+The repository also defines `npm run lint`.
 
-To learn more about Next.js, take a look at the following resources:
+## Configuration
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The source directly references this environment variable:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+| Name | Required | Purpose |
+| --- | --- | --- |
+| `REPLICATE_API_TOKEN` | For music/video | Authenticates Replicate requests. |
 
-## Deploy on Vercel
+Clerk configuration is required by `middleware.ts`, but this repository does not include an environment template or specify its variable names. The OpenAI routes currently use credentials embedded in source rather than a named environment variable; that must be remediated before setup can be considered complete.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- `app/(landing)/` — public landing page.
+- `app/(auth)/` — Clerk sign-in and sign-up pages.
+- `app/(dashboard)/(routes)/` — conversation, code, image, music, video, and dashboard pages.
+- `app/api/` — OpenAI and Replicate request handlers.
+- `components/` — navigation, forms, feedback, and UI primitives.
+- `lib/` and `constents.ts` — shared utilities and tool navigation metadata.
+
+## Status and limitations
+
+This is a prototype and no automated test script is defined. Several OpenAI route files contain embedded credentials; do not use or deploy them. Rotate those credentials and replace them with server-only environment configuration. Authentication cannot run until valid Clerk configuration is supplied. The project uses older OpenAI SDK APIs and model identifiers, so compatibility with current provider APIs is not guaranteed.
