@@ -46,13 +46,14 @@ The repository also defines `npm run lint`.
 
 ## Configuration
 
-The source directly references this environment variable:
+The source directly references these environment variables:
 
 | Name | Required | Purpose |
 | --- | --- | --- |
+| `OPENAI_API_KEY` | For conversation/code/image | Authenticates the server-side OpenAI routes. |
 | `REPLICATE_API_TOKEN` | For music/video | Authenticates Replicate requests. |
 
-Clerk configuration is required by `middleware.ts`, but this repository does not include an environment template or specify its variable names. The OpenAI routes currently use credentials embedded in source rather than a named environment variable; that must be remediated before setup can be considered complete.
+Clerk configuration is required by `middleware.ts`, but this repository does not include an environment template or specify its variable names.
 
 ## Project structure
 
@@ -65,4 +66,4 @@ Clerk configuration is required by `middleware.ts`, but this repository does not
 
 ## Status and limitations
 
-This is a prototype and no automated test script is defined. Several OpenAI route files contain embedded credentials; do not use or deploy them. Rotate those credentials and replace them with server-only environment configuration. Authentication cannot run until valid Clerk configuration is supplied. The project uses older OpenAI SDK APIs and model identifiers, so compatibility with current provider APIs is not guaranteed.
+This is a prototype and no automated test script is defined. Keep `OPENAI_API_KEY` and `REPLICATE_API_TOKEN` in server-only environment configuration and never expose their values to client code. Authentication cannot run until valid Clerk configuration is supplied. The project uses older OpenAI SDK APIs and model identifiers, so compatibility with current provider APIs is not guaranteed.
